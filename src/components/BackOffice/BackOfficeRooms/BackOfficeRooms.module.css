@@ -1,0 +1,103 @@
+.backOfficeHotels {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.backOfficeHotelsContainerModal {
+  width: 100%;
+  height: 100%;
+  font-family: "Nunito", sans-serif;
+}
+
+.backOfficeHotelsContainer {
+  width: 80%;
+  margin: auto;
+}
+
+.backOfficeHotelsContainer h2 {
+  text-align: left;
+  font-size: 32px;
+}
+
+.backOfficeHotelsOpenModal {
+  width: 200px;
+  height: 40px;
+  border: none;
+  border-radius: 6px;
+  background-color: cornflowerblue;
+  color: white;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.backOfficeHotelsBtn {
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.backOfficeHotelsContainer table {
+  font-size: 14px;
+  table-layout: fixed;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 18px;
+  text-align: center;
+  border-left: solid 1px rgba(128, 128, 128, 0.5);
+  border-right: solid 1px rgba(128, 128, 128, 0.5);
+}
+
+thead {
+  /* background: rgba(186, 177, 183, 0.4); */
+  /* background: rgba(100, 149, 237, 0.4); */
+  background: cornflowerblue;
+  color: #fff;
+}
+
+th {
+  padding: 15px;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+td {
+  padding: 15px;
+  font-size: 20px;
+  /* border-bottom: solid 1px rgba(255, 255, 255, 0.2); */
+  border-bottom: solid 1px rgba(128, 128, 128, 0.5);
+  /* border-bottom: 2px solid gray; */
+}
+
+tbody tr:hover {
+  /* background: rgba(243, 103, 199, 0.4); */
+  background: rgba(100, 149, 237, 0.4);
+}
+
+.backOfficeHotelsButtonEdit {
+  width: 100px;
+  height: 30px;
+  border: none;
+  border-radius: 6px;
+  background-color: rgb(109, 202, 101);
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.backOfficeHotelsButtonDelete {
+  width: 100px;
+  height: 30px;
+  border: none;
+  border-radius: 6px;
+  background-color: rgb(208, 97, 89);
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.backOfficeHotelsButtons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
