@@ -8,6 +8,7 @@ import HotelsBackoffice from "./View/HotelsBackoffice/HotelsBackoffice";
 import ActivitiesBackoffice from "./View/ActivitiesBackoffice/ActivitiesBackoffice";
 import HotelDetailBackoffice from "./View/HotelDetailBackoffice/HotelDetailBackoffice";
 import RoomsBackoffice from "./View/RoomsBackoffice/RoomsBackoffice";
+import Reservations from "./View/Reservations/Reservations";
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/backOffice" component={BackOffice} />
         <Route path="/backOffice/user" exact component={userBackoffice} />
         <Route path="/backOffice/hotels" exact component={HotelsBackoffice} />
+        <Route path="/backOffice/reservations" exact component={Reservations} />
         <Route
           path="/backOffice/activities"
           exact

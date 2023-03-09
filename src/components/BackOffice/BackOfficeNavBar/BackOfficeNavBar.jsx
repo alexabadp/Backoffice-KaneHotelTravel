@@ -6,7 +6,9 @@ const BackOfficeNavBar = () => {
   return (
     <div className={style.backOfficeNavBarContenedor}>
       <nav>
-        <img src={logo} alt="Logo" />
+        <Link to='/backOffice/reservations' className={style.logo}>
+          <img src={logo} alt="Logo" />
+        </Link>
         <div className={style.backOfficeNavBarEnlace}>
           <Link to="/backOffice/user">
             <span className="fas fa-user"></span> User
