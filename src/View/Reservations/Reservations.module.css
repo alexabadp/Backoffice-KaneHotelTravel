@@ -1,0 +1,16 @@
+.main {
+  display: flex;
+  gap: 20px;
+}
+
+.queryOptions{
+  width: 100%;
+  margin: 0 auto;
+}
+
+.formGroup{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  row-gap: 0.5rem;
+}
