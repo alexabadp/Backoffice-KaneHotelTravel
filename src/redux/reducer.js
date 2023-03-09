@@ -1,10 +1,10 @@
-import { GET_HOTELS_BACKOFFICE, GET_HOTEL_DETAIL, GET_CITIES, GET_HOTELS } from "./actions";
+import { GET_HOTELS_BACKOFFICE, GET_HOTEL_DETAIL, GET_HOTELS, GET_RESERVATIONS } from "./actions";
 
 const initialState = {
   hotelsBackOffice: [],
   detailHotel: [],
-  allCities: [],
-  allHotels: []
+  allHotels: [],
+  reservations: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -21,12 +21,6 @@ const rootReducer = (state = initialState, action) => {
         detailHotel: action.payload,
       };
 
-    case GET_CITIES:
-      return{
-        ...state,
-        allCities: action.payload
-      }
-
     case GET_HOTELS:
       
       return{
@@ -34,9 +28,16 @@ const rootReducer = (state = initialState, action) => {
         allHotels: action.payload
       }
 
+    case GET_RESERVATIONS:
+      return{
+        ...state,
+        reservations: action.payload
+      }
+
     default:
       return {
         ...state,
+        reservations: action.payload
       };
   }
 };
