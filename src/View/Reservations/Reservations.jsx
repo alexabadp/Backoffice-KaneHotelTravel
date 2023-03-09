@@ -27,7 +27,7 @@ console.log("reservations: ",reservations)
           <select name="hotelCombo" id='hotelCombo' onChange={handlerHotel}>
             <option value="all">All</option>
             {
-              Object.keys(allHotel).length !== 0 && allHotel.map(hotel => <option value={hotel.id} key={hotel.id}>{hotel.name}{hotel.id}</option>)
+              Object.keys(allHotel).length !== 0 && allHotel.map(hotel => <option value={hotel.id} key={hotel.id}>{hotel.name}</option>)
             }
           </select>
         </div>
