@@ -11,7 +11,9 @@ import RoomsBackoffice from "./View/RoomsBackoffice/RoomsBackoffice";
 import Reservations from "./View/Reservations/Reservations";
 import Login from "./components/Session/Login";
 
-axios.defaults.baseURL = "http://localhost:3001";
+// axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL =
+  "https://backend-kanehoteltravel-production.up.railway.app/";
 
 function App() {
   const [logueado, setLogueado] = useState(window.localStorage.getItem("text"));
