@@ -6,28 +6,28 @@ const BackOfficeNavBar = () => {
   return (
     <div className={style.backOfficeNavBarContenedor}>
       <nav>
-        <Link to='/backOffice/reservations' className={style.logo}>
+        <Link to="/backOffice/reservations" className={style.logo}>
           <img src={logo} alt="Logo" />
         </Link>
         <div className={style.backOfficeNavBarEnlace}>
-          <Link to="/backOffice/user">
-            <span className="fas fa-user"></span> User
+          <Link to="/backOffice/reservations">
+            <span className="fas fa-user"></span> Reservations
           </Link>
 
           <Link to="/backOffice/hotels">
             <span className="fas fa-hotel"></span> Hotels
           </Link>
 
-          <Link to={"/backOffice/activities"}>
+          {/* <Link to={"/backOffice/activities"}>
             <span className="fas fa-person-walking-luggage"></span> Activities
-          </Link>
+          </Link> */}
         </div>
 
-        <div className={style.backOfficeNavBarSoporte}>
-          <Link to="/backOffice">
-            <span className="fas fa-door-open"></span>Regresar
+        {/* <div className={style.backOfficeNavBarSoporte}>
+          <Link to="/">
+            <span className="fas fa-door-open"></span>Salir
           </Link>
-        </div>
+        </div> */}
       </nav>
     </div>
   );

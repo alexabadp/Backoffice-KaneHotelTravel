@@ -1,1 +1,20 @@
+.appBtnLogOut {
+  position: fixed;
+  width: 250px;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  margin-top: 160px;
+}
 
+.appBtnLogOut button {
+  margin: auto;
+  width: 130px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.appBtnLogOut button:hover {
+  background-color: gainsboro;
+  cursor: pointer;
+}

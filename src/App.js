@@ -14,42 +14,67 @@ import Login from "./components/Session/Login";
 axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
-  const [logueado, setLogueado] = useState(false);
-  const [username, setUsername] = useState("");
+  const [logueado, setLogueado] = useState(window.localStorage.getItem("text"));
+  // const [logueado, setLogueado] = useState();
+
+  const setLocalStorage = (value) => {
+    try {
+      setLogueado(value);
+      window.localStorage.setItem("text", value);
+      console.log("valor que recibe de Login", value);
+    } catch (error) {
+      console.log(error);
+      setLogueado(false);
+    }
+  };
+
+  // console.log(logueado);
 
   const renderLogin = () => {
-    return <Login session={setLogueado} />;
+    // return <Login session={setLogueado} />;
+    return <Login session={setLocalStorage} />;
   };
 
   const renderApp = () => {
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/backOffice" component={BackOffice} />
-          <Route path="/backOffice/user" exact component={userBackoffice} />
-          <Route path="/backOffice/hotels" exact component={HotelsBackoffice} />
-          <Route
-            path="/backOffice/reservations"
-            exact
-            component={Reservations}
-          />
-          <Route
-            path="/backOffice/activities"
-            exact
-            component={ActivitiesBackoffice}
-          />
-          <Route
-            path="/backOffice/:hotel/rooms"
-            exact
-            component={RoomsBackoffice}
-          />
-          <Route
-            path="/backOffice/:hotel"
-            exact
-            component={HotelDetailBackoffice}
-          />
-        </Switch>
-      </BrowserRouter>
+      <div>
+        <div className="appBtnLogOut">
+          <button type="text" onClick={(e) => setLocalStorage(false)}>
+            Cerrar Sesion
+          </button>
+        </div>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/backOffice" component={BackOffice} />
+            <Route path="/backOffice/user" exact component={userBackoffice} />
+            <Route
+              path="/backOffice/hotels"
+              exact
+              component={HotelsBackoffice}
+            />
+            <Route
+              path="/backOffice/reservations"
+              exact
+              component={Reservations}
+            />
+            <Route
+              path="/backOffice/activities"
+              exact
+              component={ActivitiesBackoffice}
+            />
+            <Route
+              path="/backOffice/:hotel/rooms"
+              exact
+              component={RoomsBackoffice}
+            />
+            <Route
+              path="/backOffice/:hotel"
+              exact
+              component={HotelDetailBackoffice}
+            />
+          </Switch>
+        </BrowserRouter>
+      </div>
     );
   };
 
