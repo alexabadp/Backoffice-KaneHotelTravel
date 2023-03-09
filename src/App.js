@@ -8,36 +8,46 @@ import HotelsBackoffice from "./View/HotelsBackoffice/HotelsBackoffice";
 import ActivitiesBackoffice from "./View/ActivitiesBackoffice/ActivitiesBackoffice";
 import HotelDetailBackoffice from "./View/HotelDetailBackoffice/HotelDetailBackoffice";
 import RoomsBackoffice from "./View/RoomsBackoffice/RoomsBackoffice";
+import Login from "./components/Session/Login";
 
 axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
-  const [openModal, setOpenModal] = useState(false);
+  const [logueado, setLogueado] = useState(false);
+  const [username, setUsername] = useState("");
 
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/backOffice" component={BackOffice} />
-        <Route path="/backOffice/user" exact component={userBackoffice} />
-        <Route path="/backOffice/hotels" exact component={HotelsBackoffice} />
-        <Route
-          path="/backOffice/activities"
-          exact
-          component={ActivitiesBackoffice}
-        />
-        <Route
-          path="/backOffice/:hotel/rooms"
-          exact
-          component={RoomsBackoffice}
-        />
-        <Route
-          path="/backOffice/:hotel"
-          exact
-          component={HotelDetailBackoffice}
-        />
-      </Switch>
-    </BrowserRouter>
-  );
+  const renderLogin = () => {
+    return <Login session={setLogueado} />;
+  };
+
+  const renderApp = () => {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/backOffice" component={BackOffice} />
+          <Route path="/backOffice/user" exact component={userBackoffice} />
+          <Route path="/backOffice/hotels" exact component={HotelsBackoffice} />
+          <Route
+            path="/backOffice/activities"
+            exact
+            component={ActivitiesBackoffice}
+          />
+          <Route
+            path="/backOffice/:hotel/rooms"
+            exact
+            component={RoomsBackoffice}
+          />
+          <Route
+            path="/backOffice/:hotel"
+            exact
+            component={HotelDetailBackoffice}
+          />
+        </Switch>
+      </BrowserRouter>
+    );
+  };
+
+  return <div>{logueado ? renderApp() : renderLogin()}</div>;
 }
 
 export default App;

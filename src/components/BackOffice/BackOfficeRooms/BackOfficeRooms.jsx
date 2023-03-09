@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getDetailHotel, getHotelsBackOffice } from "../../../redux/actions";
-import BackOfficeHotelModal from "../BackOfficeHotels/Modal/BackOfficeHotelModal";
-import BackOfficeNavBarDetails from "../BackOfficeNavBarDetails/BackOfficeNavBarDetails";
+import { getDetailHotel } from "../../../redux/actions";
 import BackOfficePaged from "../BackOfficePaged/BackOfficePaged";
 import style from "./BackOfficeRooms.module.css";
+import BackOfficeRoomModal from "./Modal/BackOfficeRoomModal";
 
 const BackOfficeRooms = () => {
   const dispatch = useDispatch();
@@ -16,10 +15,10 @@ const BackOfficeRooms = () => {
 
   useEffect(() => {
     dispatch(getDetailHotel(params.hotel));
-  }, []);
+  }, [dispatch, openModal]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [hotelsInPage, setHotelsInPage] = useState(10);
+  const [hotelsInPage, setHotelsInPage] = useState(8);
   const indexLastHotel = currentPage * hotelsInPage;
   const indexFirstHotel = indexLastHotel - hotelsInPage;
   const currentHotel = detailHotel.rooms?.slice(
@@ -33,7 +32,7 @@ const BackOfficeRooms = () => {
   return (
     <div className={style.backOfficeHotels}>
       <div className={style.backOfficeHotelsContainerModal}>
-        {openModal && <BackOfficeHotelModal closeModal={setOpenModal} />}
+        {openModal && <BackOfficeRoomModal closeModal={setOpenModal} />}
         <div className={style.backOfficeHotelsContainer}>
           <div>
             <h2>Rooms</h2>
@@ -54,7 +53,6 @@ const BackOfficeRooms = () => {
                 <th>N°</th>
                 <th>Nombre</th>
                 <th>Price</th>
-                {/* <th>Categoria</th> */}
                 <th>Config</th>
               </tr>
             </thead>
@@ -65,7 +63,6 @@ const BackOfficeRooms = () => {
                     <td>{e.id}</td>
                     <td>{e.name}</td>
                     <td>{e.price}</td>
-                    {/* <td>{e.category}</td> */}
                     <td className={style.backOfficeHotelsButtons}>
                       <Link to={`/backOffice/${e.name}`}>
                         <button className={style.backOfficeHotelsButtonEdit}>

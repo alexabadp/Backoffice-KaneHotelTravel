@@ -15,7 +15,7 @@ const BackOfficeHotels = () => {
 
   useEffect(() => {
     dispatch(getHotelsBackOffice());
-  }, []);
+  }, [dispatch, openModal]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [hotelsInPage, setHotelsInPage] = useState(8);

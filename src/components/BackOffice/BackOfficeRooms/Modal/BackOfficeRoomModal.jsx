@@ -2,53 +2,33 @@ import { useForm, useController } from "react-hook-form";
 import Select from "react-select";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { number, string, z } from "zod";
-import style from "./BackOfficeHotelModal.module.css";
+import style from "./BackOfficeRoomModal.module.css";
 import axios from "axios";
-import { getHotelsBackOffice } from "../../../../redux/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getDetailHotel } from "../../../../redux/actions";
 
 const schema = z.object({
-  name: string().min(1, { message: "Nombre es requerido" }),
+  name: string().min(1, { message: "Name is required" }),
   image: string().min(1, { message: "Imagen es requerida" }),
-  rating: string().min(1, { message: "Rating es requerido" }),
-  services: string().min(1, { message: "Servicio es requerido" }),
+  price: string().min(1, { message: "Precio es requerido" }),
   description: string().min(1, { message: "Descripcion es requerida" }),
-  category: string().min(1),
-  cityId: number(),
+  hotelId: number(),
 });
 
-const cityOptions = [
-  { value: 1, label: "Puerto Vallarta" },
-  { value: 2, label: "Cancun" },
-  { value: 3, label: "Playa Tulum" },
-];
+const BackOfficeRoomModal = ({ closeModal }) => {
+  const detailHotel = useSelector((state) => state.detailHotel);
 
-const categoryOptions = [
-  { value: "VIP", label: "VIP" },
-  { value: "Regular", label: "Regular" },
-  { value: "Economic", label: "Economic" },
-];
-
-const BackOfficeHotelModal = ({ closeModal }) => {
   const { register, control, handleSubmit, formState, watch } = useForm({
+    defaultValues: { hotelId: detailHotel.id },
     resolver: zodResolver(schema),
   });
 
   const { errors } = formState;
-  const { field: city } = useController({ name: "cityId", control });
-  const { field: category } = useController({ name: "category", control });
-
-  const handleSelectCity = (option) => {
-    city.onChange(option.value);
-  };
-
-  const handleSelectCategory = (option) => {
-    category.onChange(option.value);
-  };
 
   const handleSave = (data) => {
     console.log(data);
-    axios.post("/hotel", data);
+    axios.post("/room", data);
     closeModal(false);
   };
 
@@ -66,7 +46,7 @@ const BackOfficeHotelModal = ({ closeModal }) => {
             X
           </button>
         </div>
-        <h2>Nuevo Hotel</h2>
+        <h2>Nuevo Habitacion</h2>
         <form
           className={style.backOfficeHotelForm}
           onSubmit={handleSubmit(handleSave)}
@@ -82,14 +62,9 @@ const BackOfficeHotelModal = ({ closeModal }) => {
             {errors.image && <p>{errors.image?.message}</p>}
           </div>
           <div className={style.backOfficeHotelFormElement}>
-            <label>Rating</label>
-            <input type="number" step="0.1" {...register("rating")} />
-            {errors.rating && <p>{errors.rating?.message}</p>}
-          </div>
-          <div className={style.backOfficeHotelFormElement}>
-            <label>Services</label>
-            <input {...register("services")} />
-            {errors.services && <p>{errors.services?.message}</p>}
+            <label>Price</label>
+            <input type="number" {...register("price")} />
+            {errors.price && <p>{errors.price?.message}</p>}
           </div>
           <div className={style.backOfficeHotelFormElement}>
             <label>Description</label>
@@ -97,25 +72,10 @@ const BackOfficeHotelModal = ({ closeModal }) => {
             {errors.description && <p>{errors.description?.message}</p>}
           </div>
           <div className={style.backOfficeHotelFormElement}>
-            <label>category</label>
-            <Select
-              value={categoryOptions.find(
-                ({ value }) => value === category.value
-              )}
-              onChange={handleSelectCategory}
-              options={categoryOptions}
-            />
-            {errors.category && <p>{errors.category?.message}</p>}
+            <label>Hotel</label>
+            <input defaultValue={detailHotel.name} disabled="disabled" />
           </div>
-          <div className={style.backOfficeHotelFormElement}>
-            <label>city</label>
-            <Select
-              value={cityOptions.find(({ value }) => value === city.value)}
-              onChange={handleSelectCity}
-              options={cityOptions}
-            />
-            {errors.cityId && <p>{errors.cityId?.message}</p>}
-          </div>
+
           <div className={style.backOfficeHotelFormButton}>
             <button
               className={style.backOfficeHotelFormButtonSave}
@@ -140,4 +100,4 @@ const BackOfficeHotelModal = ({ closeModal }) => {
   );
 };
 
-export default BackOfficeHotelModal;
+export default BackOfficeRoomModal;
