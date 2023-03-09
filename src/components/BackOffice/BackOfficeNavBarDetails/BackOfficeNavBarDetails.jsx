@@ -21,7 +21,7 @@ const BackOfficeNavBarDetails = () => {
         </div>
 
         <div className={style.backOfficeNavBarSoporte}>
-          <Link to="/backOffice">
+          <Link to="/">
             <span className="fas fa-door-open"></span>Regresar
           </Link>
         </div>

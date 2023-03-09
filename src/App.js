@@ -47,7 +47,7 @@ function App() {
         </div>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/backOffice" component={BackOffice} />
+            <Route exact path="/" component={BackOffice} />
             <Route path="/backOffice/user" exact component={userBackoffice} />
             <Route
               path="/backOffice/hotels"
