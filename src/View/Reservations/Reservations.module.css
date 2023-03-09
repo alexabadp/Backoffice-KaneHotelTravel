@@ -2,3 +2,18 @@
   display: flex;
   gap: 20px;
 }
+
+.queryOptions{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 1rem auto;
+}
+
+.formGroup{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  row-gap: 0.5rem;
+}
