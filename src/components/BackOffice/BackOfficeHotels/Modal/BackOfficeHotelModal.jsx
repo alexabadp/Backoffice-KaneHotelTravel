@@ -4,15 +4,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { string, z } from "zod";
 // import NavBarOffice from "../NavBarOffice/NavBarOffice";
 import style from "./BackOfficeHotelModal.module.css";
+import axios from "axios";
 
-// const schema = z.object({
-//   name: string().min(1),
-//   image: string(),
-//   services: string(),
-//   description: string(),
-//   category: string(),
-//   city: string(),
-// });
+const schema = z.object({
+  name: string().min(1, { message: "Name is required" }),
+  image: string().min(1),
+  services: string().min(1),
+  description: string().min(1),
+  category: string(),
+  city: string(),
+});
 
 const cityOptions = [
   { value: "Puerto Vallarta", label: "Puerto Vallarta" },
@@ -28,7 +29,7 @@ const categoryOptions = [
 
 const BackOfficeHotelModal = ({ closeModal }) => {
   const { register, control, handleSubmit, formState, watch } = useForm({
-    // resolver: zodResolver(schema),
+    resolver: zodResolver(schema),
   });
 
   const { errors } = formState;
@@ -45,6 +46,7 @@ const BackOfficeHotelModal = ({ closeModal }) => {
 
   const handleSave = (data) => {
     console.log(data);
+    axios.post("/hotel", data);
   };
 
   const incluirTelefono = watch("incluirTelefono");
@@ -62,29 +64,31 @@ const BackOfficeHotelModal = ({ closeModal }) => {
           </button>
         </div>
         <h2>Nuevo Hotel</h2>
-        <p>Nombre: {watch("nombre")}</p>
         <form
           className={style.backOfficeHotelForm}
           onSubmit={handleSubmit(handleSave)}
         >
-          <div>
+          <div className={style.backOfficeHotelFormElement}>
             <label>Nombre</label>
             <input {...register("name", { required: true })} />
+            {errors.name && <p>{errors.name?.message}</p>}
           </div>
-          {errors.name?.message}
-          <div>
+          <div className={style.backOfficeHotelFormElement}>
             <label>Image</label>
             <input {...register("image", { required: true })} />
+            {errors.image && <p>{errors.image?.message}</p>}
           </div>
-          <div>
+          <div className={style.backOfficeHotelFormElement}>
             <label>Services</label>
             <input {...register("services")} />
+            {errors.services && <p>{errors.services?.message}</p>}
           </div>
-          <div>
+          <div className={style.backOfficeHotelFormElement}>
             <label>Description</label>
             <input {...register("description")} />
+            {errors.description && <p>{errors.description?.message}</p>}
           </div>
-          <div>
+          <div className={style.backOfficeHotelFormElement}>
             <label>category</label>
             <Select
               value={categoryOptions.find(
@@ -93,18 +97,34 @@ const BackOfficeHotelModal = ({ closeModal }) => {
               onChange={handleSelectCategory}
               options={categoryOptions}
             />
+            {errors.category && <p>{errors.category?.message}</p>}
           </div>
-          <div>
+          <div className={style.backOfficeHotelFormElement}>
             <label>city</label>
             <Select
               value={cityOptions.find(({ value }) => value === city.value)}
               onChange={handleSelectCity}
               options={cityOptions}
             />
+            {errors.city && <p>{errors.city?.message}</p>}
           </div>
+          <div className={style.backOfficeHotelFormButton}>
+            <button
+              className={style.backOfficeHotelFormButtonSave}
+              type="submit"
+            >
+              Save
+            </button>
 
-          <div style={{ marginTop: "12px" }}>
-            <button type="submit">Save</button>
+            <button
+              className={style.backOfficeHotelFormButtonCancel}
+              type="button"
+              onClick={() => {
+                closeModal(false);
+              }}
+            >
+              Cancelar
+            </button>
           </div>
         </form>
       </div>
